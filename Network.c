@@ -14,30 +14,39 @@
 
 int Network(void){
 
+    //Components for Socket Coding
     struct sockaddr_in client;
 	int hostname, res, SocketFD, requestBytes;
-    char *getRequest = "GET /data/2.5/weather?lat=-43.535&lon=172.639&appid=96d62d8d5fc4e02f28e85747582eb22c HTTP/1.0\r\n\r\n";
-    char buffer[9999];
-    FILE *result;
 
+    //The HTTP request string for get request
+    char *getRequest = "GET /data/2.5/weather?lat=-43.535&lon=172.639&appid=96d62d8d5fc4e02f28e85747582eb22c HTTP/1.0\r\n\r\n";
+    //buffer takes in JSON response from API
+    char buffer[9999];
+   
+   //Creates Connection to socket
 	SocketFD = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if(SocketFD == -1){
 		perror("Cannot create socket");
 		exit(EXIT_FAILURE);
 	}
-
+    //Clears Client variables
 	memset(&client, 0, sizeof(client));
 
+    //Assigns internet data to Client variables
 	client.sin_family = AF_INET;
 	client.sin_port = htons(80);
 
+    //Contains External Server IP Address 
 	res = inet_pton(AF_INET, "178.128.25.248", &client.sin_addr);
 
+    //Connection to external Server
 	if (connect(SocketFD, (struct sockaddr *)&client, sizeof(client)) == -1){
 		perror("Cannot connect");
 		close(SocketFD);
 		exit(EXIT_FAILURE);
 	}
+    
+    
     requestBytes = strlen(getRequest);
 
     if(send(SocketFD, getRequest, requestBytes, 0)< 0){
@@ -45,17 +54,16 @@ int Network(void){
         exit(EXIT_FAILURE);
     }
 
-    //recieving
     /* Receive config information from server */ 
     int totalBytesRcvd = 0; 
     unsigned int echoStringLen;
     int bytesRcvd;
-    printf("Received: ");                /* Setup to print the echoed string */ 
+    printf("Received: ");              /* Setup to print the echoed string */ 
+
+    //Recieves response for processing
     recv(SocketFD, buffer, 9999 - 1, 0);
 
-    result = fopen("result.bin", "w");
-    fprintf(result, "%s", buffer);
-
+    //Sends response to the processing file
     Processor(buffer);
 
     close(SocketFD);

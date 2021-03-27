@@ -3,7 +3,7 @@
 
 int main(void){
 
-    //Starts connection to API and Call the getRequest
+    //App starts here and creates an instance of Network and creates a connection to API and Call the getRequest
     Network();
     return 0;
 }

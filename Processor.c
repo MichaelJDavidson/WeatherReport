@@ -37,7 +37,8 @@ long Processor(char buff[9999]){
         catRunner++;
 
         
-    };
+    };//end of while
+    
     // Since I know the API Response Structure I can specifically add to Array
     weatherReport.temp = collection[0] - 273.15; // Converts from Kelvin to Celsius
     weatherReport.feels_like = collection[1] - 273.15;
