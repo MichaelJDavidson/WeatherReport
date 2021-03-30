@@ -3,7 +3,7 @@
  - Global Access to Network.c from App.c
  - Iniates weatherReport, struct to contain the processed data
    from Processor.c */
-   
+#include <gtk/gtk.h>
 long Processor(char buff[9999]);
 int Network();
 struct WeatherReport{
@@ -16,3 +16,5 @@ struct WeatherReport{
         long wind_dir;
         long wind_spd;
     } weatherReport;
+//void activate (GtkApplication* app, gpointer user_data);
+

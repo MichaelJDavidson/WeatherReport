@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "Processor.h"
 
 
@@ -10,6 +11,7 @@
 
 
 long Processor(char buff[9999]){
+    
     char catergories[][20]= { "temp" ,"feels_like", "temp_min" ,  "temp_max"  ,  "pressure" ,"humidity", "speed" , "deg"};
     long value;
     char *catSorter;
@@ -38,7 +40,7 @@ long Processor(char buff[9999]){
 
         
     };//end of while
-    
+
     // Since I know the API Response Structure I can specifically add to Array
     weatherReport.temp = collection[0] - 273.15; // Converts from Kelvin to Celsius
     weatherReport.feels_like = collection[1] - 273.15;
@@ -49,6 +51,6 @@ long Processor(char buff[9999]){
     weatherReport.wind_spd = collection[6];
     weatherReport.wind_dir = collection[7];
 
-    printf("\n%lu\n", value);
-    return value;
+    printf("\n%f\n", value - 273.15);
+    return 0;
 }
