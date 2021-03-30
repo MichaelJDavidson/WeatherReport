@@ -7,4 +7,4 @@ The Application creates a socket connection, receive and process the JSON respon
 --This will be Updated with ability to select different cities from a MySQL database and GTK+3 User Interface.
 
 Currently the App is still being built component by component which helps me learn and understand and also way to show 
-my understanding of Programming with C.
+my understanding of software development with C.
