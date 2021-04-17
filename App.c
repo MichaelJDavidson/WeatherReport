@@ -8,27 +8,14 @@ int main(int argc,char **argv){
   //and creates a connection to API and Call the getRequest
   //Creates User Interface to display processed data
   Network();
+  GtkApplication *app;
+  int status;
 
-  gtk_init(&argc, &argv);
-
-  GtkWidget *window;//W (800 x 480)
-
+  app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+  g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+  status = g_application_run (G_APPLICATION (app), argc, argv);
+  g_object_unref (app);
   
-
-
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title(GTK_WINDOW(window), "Weather Report");
-  gtk_window_set_default_size(GTK_WINDOW(window), 800, 480);
-  gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-
-
-
-  
-  gtk_widget_show(window);
-  gtk_main();
-
-  return 0;
-
-
-    
+  return status;    
+  printf("%lu", weatherReport.feels_like);
 }

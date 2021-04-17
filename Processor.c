@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "Processor.h"
 
 
@@ -51,6 +50,7 @@ long Processor(char buff[9999]){
     weatherReport.wind_spd = collection[6];
     weatherReport.wind_dir = collection[7];
 
-    printf("\n%f\n", value - 273.15);
+    printf("\n%ld\n", value);
+    printf("%lu", weatherReport.feels_like);
     return 0;
 }
