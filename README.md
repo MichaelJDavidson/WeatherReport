@@ -8,3 +8,10 @@ The Application creates a socket connection, receive and process the JSON respon
 
 Currently the App is still being built component by component which helps me learn and understand and also way to show 
 my understanding of software development with C.
+
+To compile the code:
+
+gcc `pkg-config --cflags gtk+-3.0` App.c Network.c Processor.c Processor.h UserInterface.c `pkg-config --libs gtk+-3.0`
+
+Run the code:
+./a.out
